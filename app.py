@@ -6,6 +6,7 @@ from pydantic import BaseModel
 import torch
 import torchaudio
 from transformers import AutoModelForCausalLM, AutoTokenizer
+# from outetts.wav_tokenizer.decoder import WavTokenizer
 from outetts.v0_1.decoder.pretrained import WavTokenizer  # Updated import
 from yarngpt.audiotokenizer import AudioTokenizerV2
 
@@ -130,7 +131,7 @@ async def generate_audio(request: AudioRequest, x_api_key: str = Header(...)):
     except Exception as e:
         logger.error(f"Error generating audio: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Failed to generate audio: {str(e)}")
-
+        
 @app.get("/health")
 async def health_check():
     return {"status": "it is healthy"}
