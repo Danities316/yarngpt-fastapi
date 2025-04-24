@@ -1,9 +1,10 @@
-fastapi==0.115.2
+fastapi
 uvicorn==0.32.0
 pydantic==2.9.2
-outetts==0.2.3
+outetts
 uroman
 torch
 torchaudio
 transformers==4.44.2
 pydub==0.25.1
+gdown
