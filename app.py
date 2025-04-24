@@ -133,5 +133,5 @@ async def generate_audio(request: AudioRequest, x_api_key: str = Header(...)):
 
 @app.get("/health")
 async def health_check():
-    return {"status": "healthy"}
+    return {"status": "it is healthy"}
 
