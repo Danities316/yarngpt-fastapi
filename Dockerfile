@@ -27,8 +27,8 @@ RUN apt-get purge -y --auto-remove gcc libc-dev \
 RUN git clone https://github.com/saheedniyi02/yarngpt.git /app/yarngpt
 
 # Download WavTokenizer config and model files
-RUN !wget https://huggingface.co/novateur/WavTokenizer-medium-speech-75token/resolve/main/wavtokenizer_mediumdata_frame75_3s_nq1_code4096_dim512_kmeans200_attn.yaml
-RUN !gdown 1-ASeEkrn4HY49yZWHTASgfGFNXdVnLTt
+RUN wget https://huggingface.co/novateur/WavTokenizer-medium-speech-75token/resolve/main/wavtokenizer_mediumdata_frame75_3s_nq1_code4096_dim512_kmeans200_attn.yaml
+RUN gdown 1-ASeEkrn4HY49yZWHTASgfGFNXdVnLTt
 
 # Copy application code
 COPY app.py .
