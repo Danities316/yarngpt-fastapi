@@ -1,0 +1,6 @@
+echo "wavtokenizer_large_speech_320_24k.ckpt
+venv/
+__pycache__/
+*.pyc
+output.wav
+/tmp/" > .gitignore

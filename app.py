@@ -18,7 +18,9 @@ app = FastAPI()
 
 # Environment variables
 API_KEY = os.getenv("API_KEY", "secret-key")
+logger.info(f"Expected API_KEY: {API_KEY}")
 TOKENIZER_PATH = "saheedniyi/YarnGPT2"
+
 WAV_TOKENIZER_CONFIG_PATH = os.getenv("WAV_TOKENIZER_CONFIG_PATH", "./wavtokenizer_mediumdata_frame75_3s_nq1_code4096_dim512_kmeans200_attn.yaml")
 WAV_TOKENIZER_MODEL_PATH = os.getenv("WAV_TOKENIZER_MODEL_PATH", "./wavtokenizer_large_speech_320_24k.ckpt")
 
@@ -75,16 +77,18 @@ async def generate_audio(request: AudioRequest, x_api_key: str = Header(...)):
     Output: WAV audio file as binary response
     """
     if x_api_key != API_KEY:
-        logger.error("Invalid API key")
-        raise HTTPException(status_code=401, detail={"error": "Invalid API key"})
+        error_msg = f"Invalid API key: {x_api_key} does not match expected key"
+        logger.error(error_msg)
+        raise HTTPException(status_code=401, detail=error_msg)
 
     if not request.text or len(request.text.strip()) == 0:
         logger.error("Empty text provided")
-        raise HTTPException(status_code=400, detail={"error": "Text cannot be empty"})
+        raise HTTPException(status_code=400, detail="Text cannot be empty")
     
     if request.lang not in SUPPORTED_LANGUAGES:
-        logger.error(f"Unsupported language: {request.lang}")
-        raise HTTPException(status_code=400, detail={"error": f"Unsupported language. Use one of: {', '.join(SUPPORTED_LANGUAGES.keys())}"})
+        error_msg = f"Unsupported language: {request.lang}. Use one of: {', '.join(SUPPORTED_LANGUAGES.keys())}"
+        logger.error(error_msg)
+        raise HTTPException(status_code=400, detail=error_msg)
 
     try:
         logger.info(f"Generating audio for text: {request.text}, lang: {request.lang}")
@@ -125,8 +129,9 @@ async def generate_audio(request: AudioRequest, x_api_key: str = Header(...)):
     
     except Exception as e:
         logger.error(f"Error generating audio: {str(e)}")
-        raise HTTPException(status_code=500, detail={"error": f"Failed to generate audio: {str(e)}"})
+        raise HTTPException(status_code=500, detail=f"Failed to generate audio: {str(e)}")
 
 @app.get("/health")
 async def health_check():
     return {"status": "healthy"}
+
