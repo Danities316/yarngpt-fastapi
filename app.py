@@ -6,8 +6,6 @@ from pydantic import BaseModel
 import torch
 import torchaudio
 from transformers import AutoModelForCausalLM, AutoTokenizer
-# from outetts.wav_tokenizer.decoder import WavTokenizer
-# from outetts.wav_tokenizer.decoder import WavTokenizer
 from outetts.v0_1.decoder.pretrained import WavTokenizer  # Updated import
 from yarngpt.audiotokenizer import AudioTokenizerV2
 
