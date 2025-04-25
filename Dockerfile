@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
     git \
     wget \
     gcc \
+    g++ \
     libc-dev \
     && rm -rf /var/lib/apt/lists/*
 
@@ -33,7 +34,7 @@ RUN gdown 1-ASeEkrn4HY49yZWHTASgfGFNXdVnLTt
 # Copy application code
 COPY app.py .
 COPY .gitmodules .
-COPY yarngpts yarngpts
+COPY yarngpt yarngpt
 
 # Expose port for FastAPI
 EXPOSE 8000
