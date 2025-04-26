@@ -77,6 +77,7 @@ async def generate_audio(request: AudioRequest, x_api_key: str = Header(...)):
     Input: { "text": string, "lang": string ("ha", "yo", "ig", "en") }
     Output: WAV audio file as binary response
     """
+    logger.info(f"Received API key: {x_api_key}")
     if x_api_key != API_KEY:
         error_msg = f"Invalid API key: {x_api_key} does not match expected key"
         logger.error(error_msg)
