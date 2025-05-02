@@ -1,14 +1,14 @@
 import os
- import logging
- from fastapi import FastAPI, HTTPException, Header
- from fastapi.responses import Response
- from pydantic import BaseModel
- import torch
- import torchaudio
- from transformers import AutoModelForCausalLM, AutoTokenizer
- from outetts.wav_tokenizer.decoder import WavTokenizer
- # from outetts.v0_1.decoder.pretrained import WavTokenizer  # Updated import
- from yarngpt.audiotokenizer import AudioTokenizerV2
+import logging
+from fastapi import FastAPI, HTTPException, Header
+from fastapi.responses import Response
+from pydantic import BaseModel
+import torch
+import torchaudio
+from transformers import AutoModelForCausalLM, AutoTokenizer
+from outetts.wav_tokenizer.decoder import WavTokenizer
+# from outetts.v0_1.decoder.pretrained import WavTokenizer  # Updated import
+from yarngpt.audiotokenizer import AudioTokenizerV2
  
  # Configure logging
  logging.basicConfig(level=logging.INFO)
